@@ -12,6 +12,10 @@ var routes = require('./routes/index');
 
 var app = express();
 
+// set environment
+if (process.env.ENVIRONMENT !== 'dev')
+  app.set('env', 'production');
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
