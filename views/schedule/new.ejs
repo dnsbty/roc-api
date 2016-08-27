@@ -1,0 +1,81 @@
+<html>
+<head>
+	<title>BYU Sports Schedule</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+	<div class="container">
+		<h1>New Game</h1>
+		<form method="post" action="/schedule/new">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="datetime">Datetime</label>
+						<input type="text" name="datetime" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="sport">Sport</label>
+						<select name="sport" class="form-control">
+							<option value="0" selected="selected">Football</option>
+							<option value="1">Men's Basketball</option>
+							<option value="2">Women's Soccer</option>
+							<option value="3">Women's Volleyball</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="opponent">Opponent</label>
+						<input type="text" name="opponent" class="form-control">
+					</div>
+					<div class="form-group">
+						<label for="homeaway">Home or Away</label>
+						<select name="homeaway" class="form-control">
+							<option value="0" selected="selected">Home</option>
+							<option value="1">Away</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="color">Color to Wear</label>
+						<select name="color" class="form-control">
+							<option value="0" selected="selected">White</option>
+							<option value="1">Navy</option>
+							<option value="2">Royal Blue</option>
+							<option value="3">Black</option>
+							<option value="4">Any Color</option>
+						</select>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="form-group">
+						<label for="venue">Venue</label>
+						<input type="text" name="venue" class="form-control" value="Lavell Edwards Stadium">
+					</div>
+					<div class="form-group">
+						<label for="city">City</label>
+						<input type="text" name="city" class="form-control" value="Provo, UT">
+					</div>
+					<div class="form-group">
+						<label for="winloss">Win/Loss</label>
+						<select name="winloss" class="form-control">
+							<option value="3" selected="selected">Unplayed</option>
+							<option value="0">Win</option>
+							<option value="1">Loss</option>
+							<option value="2">Tie</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="score_byu">BYU's Score</label>
+						<input type="text" name="score_byu" class="form-control" value="0">
+					</div>
+					<div class="form-group">
+						<label for="score_opponent">Opponent's Score</label>
+						<input type="text" name="score_opponent" class="form-control" value="0">
+					</div>
+				</div>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-default">Save Game</button>
+			</div>
+		</form>
+	</div>
+</body>
+</html>
