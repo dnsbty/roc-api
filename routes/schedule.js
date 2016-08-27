@@ -56,6 +56,17 @@ router.post('/new', function(req, res, next) {
 	
 	var games = require('../public/json/schedule.json');
 	games.push(req.body);
+	games.sort(function(a, b){
+		return a.datetime - b.datetime;
+	});
+	fs.writeFileSync(path.resolve(__dirname, '../public/json/schedule.json'), JSON.stringify(games), 'utf-8');
+	res.redirect('/schedule');
+});
+
+/* DELETE scheduled game */
+router.get('/delete/:id', function(req, res, next) {
+	var games = require('../public/json/schedule.json');
+	games.splice(req.params.id, 1);
 	fs.writeFileSync(path.resolve(__dirname, '../public/json/schedule.json'), JSON.stringify(games), 'utf-8');
 	res.redirect('/schedule');
 });
