@@ -2,80 +2,92 @@
 <head>
 	<title>BYU Sports Schedule</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </head>
 <body>
 	<div class="container">
 		<h1>New Game</h1>
-		<form method="post" action="/schedule/new">
+		<% if (typeof error !== 'undefined') { %><div class="alert alert-danger" role="alert"><%= error %></div>
+		<% } %><form method="post" action="/schedule/new">
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="datetime">Datetime</label>
-						<input type="text" name="datetime" class="form-control">
+						<input type="text" name="datetime" class="form-control" value="<%= input.datetime %>">
 					</div>
 					<div class="form-group">
 						<label for="sport">Sport</label>
 						<select name="sport" class="form-control">
-							<option value="0" selected="selected">Football</option>
-							<option value="1">Men's Basketball</option>
-							<option value="2">Women's Soccer</option>
-							<option value="3">Women's Volleyball</option>
+							<option value="0"<% if (input.sport == 0) { %> selected="selected"<% } %>>Football</option>
+							<option value="1"<% if (input.sport == 1) { %> selected="selected"<% } %>>Men's Basketball</option>
+							<option value="2"<% if (input.sport == 2) { %> selected="selected"<% } %>>Women's Soccer</option>
+							<option value="3"<% if (input.sport == 3) { %> selected="selected"<% } %>>Women's Volleyball</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="opponent">Opponent</label>
-						<input type="text" name="opponent" class="form-control">
+						<input type="text" name="opponent" class="form-control" value="<%= input.opponent %>">
 					</div>
 					<div class="form-group">
 						<label for="homeaway">Home or Away</label>
 						<select name="homeaway" class="form-control">
-							<option value="0" selected="selected">Home</option>
-							<option value="1">Away</option>
+							<option value="0"<% if (input.homeaway == 0) { %> selected="selected"<% } %>>Home</option>
+							<option value="1"<% if (input.homeaway == 1) { %> selected="selected"<% } %>>Away</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="color">Color to Wear</label>
 						<select name="color" class="form-control">
-							<option value="0" selected="selected">White</option>
-							<option value="1">Navy</option>
-							<option value="2">Royal Blue</option>
-							<option value="3">Black</option>
-							<option value="4">Any Color</option>
+							<option value="0"<% if (input.color == 0) { %> selected="selected"<% } %>>White</option>
+							<option value="1"<% if (input.color == 1) { %> selected="selected"<% } %>>Navy</option>
+							<option value="2"<% if (input.color == 2) { %> selected="selected"<% } %>>Royal Blue</option>
+							<option value="3"<% if (input.color == 3) { %> selected="selected"<% } %>>Black</option>
+							<option value="4"<% if (input.color == 4) { %> selected="selected"<% } %>>Any Color</option>
 						</select>
 					</div>
 				</div>
 				<div class="col-sm-6">
 					<div class="form-group">
 						<label for="venue">Venue</label>
-						<input type="text" name="venue" class="form-control" value="Lavell Edwards Stadium">
+						<input type="text" name="venue" class="form-control" value="<%= input.venue %>">
 					</div>
 					<div class="form-group">
 						<label for="city">City</label>
-						<input type="text" name="city" class="form-control" value="Provo, UT">
+						<input type="text" name="city" class="form-control" value="<%= input.city %>">
 					</div>
 					<div class="form-group">
 						<label for="winloss">Win/Loss</label>
 						<select name="winloss" class="form-control">
-							<option value="3" selected="selected">Unplayed</option>
-							<option value="0">Win</option>
-							<option value="1">Loss</option>
-							<option value="2">Tie</option>
+							<option value="3"<% if (input.winloss == 3) { %> selected="selected"<% } %>>Unplayed</option>
+							<option value="0"<% if (input.winloss == 0) { %> selected="selected"<% } %>>Win</option>
+							<option value="1"<% if (input.winloss == 1) { %> selected="selected"<% } %>>Loss</option>
+							<option value="2"<% if (input.winloss == 2) { %> selected="selected"<% } %>>Tie</option>
 						</select>
 					</div>
 					<div class="form-group">
 						<label for="score_byu">BYU's Score</label>
-						<input type="text" name="score_byu" class="form-control" value="0">
+						<input type="text" name="score_byu" class="form-control" value="<%= input.score_byu %>">
 					</div>
 					<div class="form-group">
 						<label for="score_opponent">Opponent's Score</label>
-						<input type="text" name="score_opponent" class="form-control" value="0">
+						<input type="text" name="score_opponent" class="form-control" value="<%= input.score_opponent %>">
 					</div>
 				</div>
 			</div>
 			<div class="form-group">
 				<button type="submit" class="btn btn-default">Save Game</button>
+				<a href="/schedule" rel="cancel">Cancel</a>
 			</div>
 		</form>
 	</div>
+	<script>
+		$(document).ready(function() {
+			$('input')[0].focus();
+			$('a[rel=cancel]').on('click', function() {
+				if (!confirm('Are you sure you want to leave this form?'))
+					return false;
+			});
+		});
+	</script>
 </body>
 </html>
