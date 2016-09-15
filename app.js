@@ -10,6 +10,7 @@ env(__dirname + '/.env');
 
 var routes = require('./routes/index');
 var schedule = require('./routes/schedule');
+var devices = require('./routes/devices');
 
 var app = express();
 
@@ -30,6 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/schedule', schedule);
+app.use('/devices', devices);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
