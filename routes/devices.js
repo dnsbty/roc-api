@@ -5,8 +5,8 @@ var path = require('path');
 
 /* POST new scheduled game */
 router.post('/', function(req, res, next) {
-	if (!req.body || req.body.token == '' || req.body.type == '') {
-		res.status(400).json({ message: 'Missing required fields' });
+	if (!req.body || !req.body.token || !req.body.type || req.body.token == '' || req.body.type == '') {
+		return res.status(400).json({ message: 'Missing required fields' });
 	}
 	
 	var devices = require('../public/json/devices.json');
