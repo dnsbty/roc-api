@@ -4,7 +4,7 @@ var fs = require('fs');
 var path = require('path');
 
 /* POST new scheduled game */
-router.post('/new', function(req, res, next) {
+router.post('/', function(req, res, next) {
 	if (!req.body || req.body.token == '' || req.body.type == '') {
 		res.status(400).json({ message: 'Missing required fields' });
 	}
