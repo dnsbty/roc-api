@@ -13,7 +13,7 @@ router.post('/', function(req, res, next) {
 	
 	var phones = require('../public/json/phones.json');
 	req.body.added = Date.now;
-	devices.push(req.body);
+	phones.push(req.body);
 	fs.writeFileSync(path.resolve(__dirname, '../public/json/phones.json'), JSON.stringify(phones), 'utf-8');
 	res.json({ message: 'Success' });
 });
