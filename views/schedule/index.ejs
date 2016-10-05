@@ -18,10 +18,23 @@
 				<th>Delete</th>
 			</tr><% games.forEach(function(game, index) { %>
 			<tr>
-				<td><%= game.datetime %></td>
-				<td><%= game.sport %></td>
+				<td class="datetime"><%= game.datetime %></td>
+				<td><% switch (game.sport) {
+					case 0:
+						%>Football<%
+						break;
+					case 1:
+						%>Men's Basketball<%
+						break;
+					case 2:
+						%>Women's Soccer<%
+						break;
+					case 3:
+						%>Women's Volleyball<%
+						break;
+				} %></td>
 				<td><%= game.opponent %></td>
-				<td><%= game.homeaway %></td>
+				<td><%= game.homeaway == 0 ? "Home" : "Away" %></td>
 				<td><a href="/schedule/edit/<%= index %>" rel="edit"><span class="glyphicon glyphicon-pencil"></span></a></td>
 				<td><a href="/schedule/delete/<%= index %>" rel="delete"><span class="glyphicon glyphicon-trash"></span></a></td>
 			</tr><% }); %>
@@ -32,6 +45,13 @@
 			$('a[rel=delete]').on('click', function() {
 				if (!confirm('Are you sure you want to delete this game?'))
 					return false;
+			});
+			$('.datetime').each(function() {
+				var timestamp = $(this).html() * 1;
+				var date = new Date(timestamp);
+				var string = date.getMonth() + "/" + date.getDate() + "/" + (date.getYear() + 1900);
+  				string += " " + date.getHours() + ":" + date.getMinutes();
+  				$(this).html(string);
 			});
 		});
 	</script>
