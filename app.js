@@ -3,6 +3,7 @@ var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var db = require('./db');
 
 // load environment variables
 var env = require('node-env-file');
@@ -18,6 +19,12 @@ var app = express();
 // set environment
 if (process.env.ENVIRONMENT !== 'dev')
   app.set('env', 'production');
+
+// database connection setup
+db.connect(function (err) {
+  if (err)
+    console.log('Unable to connect to the database.');
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
