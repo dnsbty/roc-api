@@ -14,6 +14,7 @@ var schedule = require('./routes/schedule');
 var devices = require('./routes/devices');
 var phones = require('./routes/phones');
 var users = require('./routes/users');
+var passes = require('./routes/passes');
 
 var app = express();
 
@@ -43,6 +44,7 @@ app.use('/schedule', schedule);
 app.use('/devices', devices);
 app.use('/phones', phones);
 app.use('/users', users);
+app.use('/passes', passes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
